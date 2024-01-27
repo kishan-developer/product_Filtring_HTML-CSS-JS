@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product filtring </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .filters {
+      margin-bottom: 20px;
+    }
+
+    .product {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="filters">
+  <label for="category">Category:</label>
+  <select id="category" onchange="filterProducts()">
+    <option value="all">All</option>
+    <option value="electronics">Electronics</option>
+    <option value="clothing">Clothing</option>
+    <option value="books">Books</option>
+  </select>
+</div>
+
+<div id="product-list">
+  <div class="product" data-category="electronics">Smartphone</div>
+  <div class="product" data-category="clothing">T-shirt</div>
+  <div class="product" data-category="books">JavaScript Book</div>
+  <div class="product" data-category="electronics">Laptop</div>
+  <div class="product" data-category="clothing">Jeans</div>
+  <div class="product" data-category="books">CSS Book</div>
+</div>
+
+<script>
+  function filterProducts() {
+    var categoryFilter = document.getElementById("category").value;
+    var products = document.getElementsByClassName("product");
+
+    for (var i = 0; i < products.length; i++) {
+      var product = products[i];
+      var productCategory = product.getAttribute("data-category");
+
+      if (categoryFilter === "all" || productCategory === categoryFilter) {
+        product.style.display = "inline-block";
+      } else {
+        product.style.display = "none";
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
